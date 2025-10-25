@@ -1,22 +1,21 @@
+# main.py
 import asyncio
 from orchestrator.orchestrator_agent import OrchestratorAgent
+from rag.rag_engine import RagEngine
+from memory.conversation_memory import ConversationMemory
 
 async def main():
+    rag = RagEngine(data_dir="data")
+    memory = ConversationMemory()
+    orchestrator = OrchestratorAgent(rag_engine=rag, memory=memory)
 
-    orchestrator = OrchestratorAgent()
-
-    print("🤖 Trợ lý tài chính khởi động (Gemini SDK version). Gõ 'exit' để thoát.\n")
-
+    print("🤖 Trợ lý tài chính (local mode). Gõ 'exit' để thoát.")
     while True:
-        question = input("Nhập câu hỏi tài chính: ").strip()
-        if question.lower() in ["exit", "quit"]:
-            print("👋 Tạm biệt! Hẹn gặp lại.")
+        q = input("Nhập câu hỏi: ").strip()
+        if q.lower() in ["exit", "quit"]:
             break
-        
-        response = await orchestrator.handle_query(question)
-        print("\n💬", response, "\n")
+        resp = await orchestrator.handle_query(q, user_id="me")
+        print("\n💬", resp, "\n")
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-

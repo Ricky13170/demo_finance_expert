@@ -1,0 +1,28 @@
+{
+  "7247246148": [
+    {
+      "role": "user",
+      "text": "xin chào"
+    },
+    {
+      "role": "assistant",
+      "text": "Xin chào! 👋 Mình là trợ lý tài chính giúp bạn tìm hiểu về giá cổ phiếu và tư vấn tài chính. Bạn cần giúp đỡ gì?"
+    },
+    {
+      "role": "user",
+      "text": "cho tôi biết giá cổ phiếu của VIN hôm qua"
+    },
+    {
+      "role": "assistant",
+      "text": "Xin lỗi vì sự bất tiện! 🤔 Có vẻ như hệ thống đang gặp lỗi khi truy vấn dữ liệu về giá cổ phiếu của VIN. Mình sẽ thử lại giúp bạn nhé! 📊\n\nBạn muốn mình giúp tìm giá cổ phiếu của VIN (Công ty Cổ phần Vinamilk) hôm qua đúng không? 🤔"
+    },
+    {
+      "role": "user",
+      "text": "cho tôi biết giá cổ phiếu của FPT hôm qua?"
+    },
+    {
+      "role": "assistant",
+      "text": "Xin lỗi vì sự bất tiện! 🤔 Có vẻ như hệ thống đang gặp lỗi khi truy vấn dữ liệu về giá cổ phiếu của FPT. Mình sẽ thử lại giúp bạn nhé! 📊\n\nBạn muốn mình giúp tìm giá cổ phiếu của FPT (Công ty Cổ phần FPT) hôm qua đúng không? 🤔\n\nTuy nhiên, do lỗi kỹ thuật, mình chưa thể cung cấp thông tin chính xác. Mình sẽ cố gắng lại sau nhé! 😊"
+    }
+  ]
+}
