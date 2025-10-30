@@ -1,0 +1,47 @@
+# .dockerignore - Loại trừ các file không cần thiết khi build Docker image
+# Giúp build nhanh hơn và image nhỏ hơn
+
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation (không cần trong container)
+*.md
+README.md
+
+# Environment & config
+.env
+.env.local
+.env.example
+
+# Data (sẽ mount từ host)
+chroma_db/
+conversation_history.json
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db
+
+# Deployment folder (không copy vào container)
+deployment/
+
+# Test files
+test_*.py
+*_test.py
+
