@@ -28,6 +28,7 @@ class ConversationMemory:
         try:
             with open(self.storage_path, "w", encoding="utf-8") as f:
                 json.dump(self._history, f, ensure_ascii=False, indent=2)
+        
         except Exception as e:
             print("[WARN] ConversationMemory save failed:", e)
 
