@@ -2,27 +2,83 @@
   "7247246148": [
     {
       "role": "user",
+      "text": "còn với VIN thì sao?"
+    },
+    {
+      "role": "assistant",
+      "text": "Xin lỗi vì lỗi hệ thống 😅. Tôi không thể cung cấp thông tin về cổ phiếu VIN ngay lúc này 📊.\n\nTuy nhiên, dựa trên tin tức trước đó, VNM (Vinamilk) và VCB (Vietcombank) là những cổ phiếu được đề cập đến trong danh mục đầu tư của một doanh nghiệp nhà nước 📈. Nếu bạn quan tâm đến VIN (có thể là Vingroup?), có thể muốn theo dõi thêm thông tin từ các nguồn khác hoặc chờ hệ thống cập nhật dữ liệu mới 🤔."
+    },
+    {
+      "role": "user",
+      "text": "vậy cho tôi biết giá cổ phiếu hôm qua của VIN"
+    },
+    {
+      "role": "assistant",
+      "text": "Giá cổ phiếu VIN hôm qua là 17.1 VND 📊. Nếu bạn cần thông tin cập nhật hơn, hãy cho tôi biết để tôi kiểm tra lại nhé 💡."
+    },
+    {
+      "role": "user",
+      "text": "còn hôm nay thì sao?"
+    },
+    {
+      "role": "assistant",
+      "text": "Tôi cần mã cổ phiếu cụ thể để tra cứu giá nhé! 📊 Nếu bạn muốn biết giá cổ phiếu VIN (Vingroup), mã cổ phiếu là VIC. Bạn có muốn tôi kiểm tra giá VIC hôm nay không?"
+    },
+    {
+      "role": "user",
+      "text": "giá của VIN hôm nay"
+    },
+    {
+      "role": "assistant",
+      "text": "Giá cổ phiếu VIN hôm nay là 17.1 VND 📊. Thông tin có thể chưa được cập nhật ngay lập tức, bạn cần thông tin mới hơn thì cho tôi biết nhé!"
+    },
+    {
+      "role": "user",
       "text": "xin chào"
     },
     {
       "role": "assistant",
-      "text": "Xin chào! 👋 Mình là trợ lý tài chính giúp bạn tìm hiểu về giá cổ phiếu và tư vấn tài chính. Bạn cần giúp đỡ gì?"
+      "text": "Xin chào! 👋 Mình là trợ lý tài chính. Bạn cần giúp đỡ gì về giá cổ phiếu, tư vấn đầu tư, hoặc tin tức thị trường hôm nay không?"
     },
     {
       "role": "user",
-      "text": "cho tôi biết giá cổ phiếu của VIN hôm qua"
+      "text": "cho tôi tin tức mới về FPT"
     },
     {
       "role": "assistant",
-      "text": "Xin lỗi vì sự bất tiện! 🤔 Có vẻ như hệ thống đang gặp lỗi khi truy vấn dữ liệu về giá cổ phiếu của VIN. Mình sẽ thử lại giúp bạn nhé! 📊\n\nBạn muốn mình giúp tìm giá cổ phiếu của VIN (Công ty Cổ phần Vinamilk) hôm qua đúng không? 🤔"
+      "text": "Chào bạn! 👋 Tin tức mới về FPT:\n\n- FPT vừa trình diễn giải pháp an ninh mạng chủ động tại triển lãm Công ước Hà Nội, ứng dụng AI để bảo vệ không gian số của Việt Nam 💻\n- Cổ phiếu FPT có khả năng sẽ góp mặt trong bộ chỉ số đầu tư cổ phiếu công nghiệp và công nghệ mới của HoSE, cùng với HPG và GEX 📈\n\nBạn muốn biết thêm thông tin gì về FPT hoặc thị trường chứng khoán không? 🤔"
     },
     {
       "role": "user",
-      "text": "cho tôi biết giá cổ phiếu của FPT hôm qua?"
+      "text": "giá cổ phiếu của FPT hôm qua là bao nhiêu?"
     },
     {
       "role": "assistant",
-      "text": "Xin lỗi vì sự bất tiện! 🤔 Có vẻ như hệ thống đang gặp lỗi khi truy vấn dữ liệu về giá cổ phiếu của FPT. Mình sẽ thử lại giúp bạn nhé! 📊\n\nBạn muốn mình giúp tìm giá cổ phiếu của FPT (Công ty Cổ phần FPT) hôm qua đúng không? 🤔\n\nTuy nhiên, do lỗi kỹ thuật, mình chưa thể cung cấp thông tin chính xác. Mình sẽ cố gắng lại sau nhé! 😊"
+      "text": "Giá cổ phiếu FPT hôm qua là 98.0 VND 📊. Thông tin có thể chưa được cập nhật ngay lập tức, bạn cần thông tin mới hơn thì cho tôi biết nhé!"
+    },
+    {
+      "role": "user",
+      "text": "còn ngày hôm nay thì sao?"
+    },
+    {
+      "role": "assistant",
+      "text": "Giá cổ phiếu FPT hôm nay là 98.5 VND 📊. Bạn muốn biết thêm thông tin về xu hướng thị trường hoặc phân tích cổ phiếu không? 🤔"
+    },
+    {
+      "role": "user",
+      "text": "tôi có nên đầu tư vào FPT không?"
+    },
+    {
+      "role": "assistant",
+      "text": "Cổ phiếu FPT đang có xu hướng tăng, giá cao hơn trung bình 30 ngày và tăng 4.29% trong phiên gần nhất 📈. Tuy nhiên, phân tích tự động chỉ đưa ra khuyến nghị \"Cân nhắc - chưa có tín hiệu rõ\" 🤔.\n\nNếu bạn đang cân nhắc đầu tư, có thể tham khảo thêm thông tin và ý kiến từ chuyên gia tài chính để đưa ra quyết định sáng suốt 💡."
+    },
+    {
+      "role": "user",
+      "text": "giá cổ phiếu của VNM hôm nay"
+    },
+    {
+      "role": "assistant",
+      "text": "Giá cổ phiếu VNM hôm nay là 57.4 VND 📊. Bạn muốn biết thêm thông tin về thị trường hoặc phân tích cổ phiếu này không?"
     }
   ]
 }
