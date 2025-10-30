@@ -1,168 +1,67 @@
-# rag/rag_engine.py
 import os
-import json
-import glob
-import pandas as pd
-from typing import List, Optional
-from dataclasses import dataclass
+from typing import List
+from tools.rag_chroma import RAGChroma
 
-# nhẹ: local Document-like dataclass (không phụ thuộc langchain)
-@dataclass
-class SimpleDoc:
-    page_content: str
-    metadata: dict
 
 class RagEngine:
     """
-    RAG Engine (placeholder)
-    - Không gọi API embeddings (tạm thời)
-    - Đọc file data/* (csv, xlsx, xls, txt)
-    - Lưu "raw_docs.json" để dùng sau khi bạn implement embeddings
-    - retrieve_context() trả về các đoạn tương đối liên quan bằng fuzzy substring match (fallback)
-    - Sau này: implement build_index() để tạo embeddings + FAISS/Chroma...
+    RAG Engine tích hợp với ChromaDB.
+    - Dùng RAGChroma để truy vấn & thêm dữ liệu tin tức.
+    - Cung cấp các hàm query(), add_documents(), retrieve_context().
     """
 
-    def __init__(self, data_dir: str = "data", index_path: str = "rag_index", raw_dump: str = "rag_raw_docs.json"):
-        self.data_dir = data_dir
-        self.index_path = index_path
-        self.raw_dump = raw_dump
-        self.raw_docs: List[SimpleDoc] = []
-        self.vectorstore = None  # future place to hold FAISS/Chroma object
-        # load existing raw dump if exists
-        if os.path.exists(self.raw_dump):
-            try:
-                with open(self.raw_dump, "r", encoding="utf-8") as f:
-                    arr = json.load(f)
-                    self.raw_docs = [SimpleDoc(page_content=d["page_content"], metadata=d.get("metadata", {})) for d in arr]
-            except Exception:
-                self.raw_docs = []
+    def __init__(self, persist_directory: str = "./chroma_db", collection_name: str = "finance_news"):
+        self.persist_directory = persist_directory
+        self.collection_name = collection_name
 
-    # -------------------------
-    def _read_files_to_docs(self) -> List[SimpleDoc]:
-        docs: List[SimpleDoc] = []
-        if not os.path.exists(self.data_dir):
-            return docs
+        self.rag = RAGChroma(
+            persist_directory=self.persist_directory,
+            collection_name=self.collection_name
+        )
 
-        for path in glob.glob(os.path.join(self.data_dir, "*")):
-            fname = os.path.basename(path)
-            try:
-                if fname.lower().endswith((".csv",)):
-                    df = pd.read_csv(path)
-                    for _, row in df.iterrows():
-                        content = " ".join([str(v) for v in row.values if pd.notna(v)])
-                        if content.strip():
-                            docs.append(SimpleDoc(page_content=content, metadata={"source": fname}))
-                elif fname.lower().endswith((".xlsx", ".xls")):
-                    # read via pandas (user must have xlrd/openpyxl installed)
-                    df = pd.read_excel(path)
-                    for _, row in df.iterrows():
-                        content = " ".join([str(v) for v in row.values if pd.notna(v)])
-                        if content.strip():
-                            docs.append(SimpleDoc(page_content=content, metadata={"source": fname}))
-                elif fname.lower().endswith((".txt", ".md")):
-                    with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                        text = f.read().strip()
-                        if text:
-                            docs.append(SimpleDoc(page_content=text, metadata={"source": fname}))
-                else:
-                    # ignore other files
-                    continue
-            except Exception as e:
-                print(f"[WARN] Không đọc được file {fname}: {e}")
-        return docs
+        print(f"ChromaDB collection '{self.collection_name}' initialized at {self.persist_directory}")
 
-    # -------------------------
-    def build_index(self, force_reload: bool = False):
+    def query(self, query_text: str, top_k: int = 3) -> List[dict]:
         """
-        Placeholder:
-        - đọc files và lưu ra raw_dump (json)
-        - nếu bạn muốn hiện tại build vectorstore, override / extend this
+        Tìm kiếm tin tức trong ChromaDB theo câu truy vấn.
+        Trả về danh sách dict gồm text + metadata.
         """
-        print("📊 (RAG) build_index: đọc file raw và lưu ra raw dump (tạm).")
-        docs = self._read_files_to_docs()
-        if not docs:
-            print("[WARN] Không tìm thấy tài liệu nào để build (data dir empty).")
-            self.raw_docs = []
-            return
-
-        self.raw_docs = docs
         try:
-            with open(self.raw_dump, "w", encoding="utf-8") as f:
-                json.dump([{"page_content": d.page_content, "metadata": d.metadata} for d in docs], f, ensure_ascii=False, indent=2)
-            print(f"✅ Đã lưu {len(docs)} đoạn raw docs vào {self.raw_dump}. Khi bạn thêm embeddings, chạy lại để build index.")
+            results = self.rag.query(query_text, top_k=top_k)
+            if results:
+                print(f"(RAG) Tìm thấy {len(results)} kết quả liên quan đến truy vấn: '{query_text}'")
+            else:
+                print(f"(RAG) Không tìm thấy kết quả cho truy vấn: '{query_text}'")
+            return results
         except Exception as e:
-            print("[WARN] Không thể lưu raw dump:", e)
+            print(f"[WARN] RAG query failed: {e}")
+            return []
 
-    # -------------------------
-    def load_index(self):
+    def add_documents(self, texts: List[str], metadatas: List[dict]):
         """
-        Nếu bạn lưu vectorstore (FAISS/...), load vào self.vectorstore ở đây.
-        Hiện placeholder trả về None.
+        Thêm tài liệu mới vào ChromaDB.
         """
-        if self.vectorstore is not None:
-            return self.vectorstore
-        # Future: implement loading FAISS/Chroma etc.
-        print("[RAG] load_index: chưa có vectorstore (placeholder).")
-        return None
+        try:
+            self.rag.add_documents(texts, metadatas)
+            print(f"(RAG) Đã thêm {len(texts)} tài liệu mới vào collection '{self.collection_name}'.")
+        except Exception as e:
+            print(f"[WARN] RAG add_documents failed: {e}")
 
-    # -------------------------
-    def set_vectorstore(self, vs):
+    def retrieve_context(self, query_text: str, top_k: int = 3) -> str:
         """
-        Cho phép external code set vectorstore object (FAISS/Chroma).
+        Trả về context text (kết hợp nhiều đoạn tin) cho LLM.
+        Dùng để bổ sung thông tin ngữ cảnh khi tạo phản hồi.
         """
-        self.vectorstore = vs
-
-    # -------------------------
-    def get_relevant_docs(self, query: str, k: int = 3) -> List[SimpleDoc]:
-        """
-        Trả về danh sách SimpleDoc. Nếu vectorstore được set -> dùng nó.
-        Nếu chưa -> fallback: substring scoring on raw_docs.
-        """
-        if self.vectorstore:
-            # future: call vectorstore.similarity_search(query, k=k) and adapt to SimpleDoc
-            try:
-                hits = self.vectorstore.similarity_search(query, k=k)
-                # hits might be langchain Documents; normalize
-                result = []
-                for h in hits:
-                    text = getattr(h, "page_content", str(h))
-                    meta = getattr(h, "metadata", {})
-                    result.append(SimpleDoc(page_content=text, metadata=meta))
-                return result
-            except Exception as e:
-                print("[WARN] vectorstore search failed:", e)
-                # fall through to fallback
-
-        # fallback simple substring score
-        scores = []
-        q_lower = query.lower()
-        for d in self.raw_docs:
-            txt = d.page_content.lower()
-            score = 0
-            if q_lower in txt:
-                score += 10
-            # add some simple heuristics: number of query tokens present
-            tokens = [t for t in q_lower.split() if len(t) > 2]
-            hits = sum(1 for t in tokens if t in txt)
-            score += hits
-            if score > 0:
-                scores.append((score, d))
-        scores.sort(key=lambda x: x[0], reverse=True)
-        top = [d for _, d in scores[:k]]
-        return top
-
-    # -------------------------
-    def retrieve_context(self, query: str, k: int = 3) -> str:
-        """
-        Return concatenated snippets for LLM prompt. Empty string if nothing.
-        """
-        docs = self.get_relevant_docs(query, k=k)
-        if not docs:
+        results = self.query(query_text, top_k=top_k)
+        if not results:
             return ""
-        parts = []
-        for d in docs:
-            snippet = d.page_content
-            if len(snippet) > 800:
-                snippet = snippet[:800] + "..."
-            parts.append(f"- ({d.metadata.get('source','')}) {snippet}")
-        return "\n".join(parts)
+
+        # Ghép các đoạn text lại làm ngữ cảnh
+        context_parts = []
+        for r in results:
+            text = r.get("text", "")
+            meta = r.get("metadata", {})
+            snippet = text[:800] + "..." if len(text) > 800 else text
+            context_parts.append(f"- ({meta.get('symbol', 'N/A')}) {snippet}")
+
+        return "\n".join(context_parts)
