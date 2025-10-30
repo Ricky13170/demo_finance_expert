@@ -1,4 +1,3 @@
-# agents/advice_agent.py
 from vnstock import Vnstock, Listing
 import pandas as pd
 import re
@@ -14,9 +13,9 @@ try:
         VALID_SYMBOLS = [s.upper() for s in df_listing['symbol'].astype(str).tolist()]
         print(f"✅ Đã tải {len(VALID_SYMBOLS)} mã cổ phiếu hợp lệ từ sàn VN")
     else:
-        print("⚠️ Listing.all_symbols() không trả về DataFrame hợp lệ. VALID_SYMBOLS rỗng.")
+        print("Listing.all_symbols() không trả về DataFrame hợp lệ. VALID_SYMBOLS rỗng.")
 except Exception as e:
-    print(f"⚠️ Không thể tải danh sách mã cổ phiếu: {e}")
+    print(f"Không thể tải danh sách mã cổ phiếu: {e}")
     VALID_SYMBOLS = []
 
 
