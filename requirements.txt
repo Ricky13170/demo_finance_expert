@@ -1,2 +1,4 @@
 vnstock>=1.0.7
 pandas
+chromadb==0.5.23
+numpy>=2.0
