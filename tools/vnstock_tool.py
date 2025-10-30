@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from vnstock import Vnstock
 import pandas as pd
+import traceback
 import re
 
 def parse_time_from_query(query: str):
@@ -10,7 +11,6 @@ def parse_time_from_query(query: str):
     if match:
         hour = int(match.group(1))
     else:
-        # Suy luận theo ngữ cảnh buổi
         if "sáng" in query:
             hour = 9
         elif "trưa" in query:
@@ -21,52 +21,57 @@ def parse_time_from_query(query: str):
             hour = 19
         else:
             return None
-
-    # điều chỉnh ngữ cảnh: nếu có từ khóa 'chiều' mà giờ nhỏ hơn 12 -> cộng 12h
     if "chiều" in query and hour < 12:
         hour += 12
     return hour
 
+
 def get_stock_price(symbol: str, when: str = "latest", hour: int = None):
     try:
         vnstock = Vnstock()
-        stock_obj = vnstock.stock(symbol=symbol, source='VCI')
-        
         today = datetime.today().strftime("%Y-%m-%d")
         start_date = (datetime.today() - timedelta(days=7)).strftime("%Y-%m-%d")
 
-        # Nếu có yêu cầu theo giờ
+        print(f"🔍 symbol nhận được: [{symbol}]")
+
+
+        df = None
+        for source in ["TCBS", "VCI"]:
+            try:
+                stock_obj = vnstock.stock(symbol=symbol, source=source)
+                if hour is not None:
+                    df = stock_obj.quote.intraday(start=today, end=today, interval="1m")
+                else:
+                    df = stock_obj.quote.history(start=start_date, end=today, interval="1D")
+                if df is not None and not df.empty:
+                    print(f" Dữ liệu lấy thành công từ nguồn {source}")
+                    break
+            except Exception as e:
+                print(f"Lỗi khi lấy dữ liệu từ {source}: {e}")
+                continue
+
+        if df is None or df.empty:
+            return f"⚠️ Không tìm thấy dữ liệu cho mã {symbol}. Có thể thị trường chưa mở hoặc API tạm lỗi."
+
         if hour is not None:
-            # chỉ hỗ trợ hôm nay
-            if when != "today" and when != "latest":
-                return f"Dữ liệu theo giờ chỉ khả dụng cho hôm nay. Với hôm qua, chỉ có giá đóng cửa."
-
-            df = stock_obj.quote.intraday(start=today, end=today, interval='1m')
-            if df.empty:
-                return f"Không có dữ liệu intraday cho {symbol} hôm nay"
-
-            df['time'] = pd.to_datetime(df['time'])
+            df["time"] = pd.to_datetime(df["time"], errors="coerce")
+            df = df.dropna(subset=["time"])
             target_time = datetime.now().replace(hour=hour, minute=0, second=0, microsecond=0)
-            df['diff'] = abs(df['time'] - target_time)
-            row = df.loc[df['diff'].idxmin()]
+            df["diff"] = abs(df["time"] - target_time)
+            row = df.loc[df["diff"].idxmin()]
+            return f"Giá {symbol} gần {hour}h là {row['close']:,} VND (thời gian: {row['time']})"
 
-            price = row['close']
-            timestamp = row['time']
-            return f"Giá của {symbol} gần {hour}h là {price:,} VND (thời gian: {timestamp})"
+        date_col = "time" if "time" in df.columns else (
+            "date" if "date" in df.columns else df.columns[0]
+        )
 
-        # Nếu chỉ muốn giá đóng cửa
-        df = stock_obj.quote.history(start=start_date, end=today, interval='1D')
-        if df.empty:
-            return f"Không tìm thấy dữ liệu cho mã {symbol}"
-
-        if when == "yesterday":
-            price = df.iloc[-2]['close']
-            date = df.iloc[-2]['time']
+        if when == "yesterday" and len(df) >= 2:
+            row = df.iloc[-2]
         else:
-            price = df.iloc[-1]['close']
-            date = df.iloc[-1]['time']
+            row = df.iloc[-1]
 
-        return f"Giá đóng cửa của {symbol} vào ngày {date} là {price:,} VND"
+        return f"💰 Giá đóng cửa của {symbol} vào ngày {row[date_col]} là {row['close']:,} VND"
 
     except Exception as e:
-        return f"Lỗi khi truy vấn dữ liệu: {e}"
+        print("❌ Lỗi chi tiết:\n", traceback.format_exc())
+        return f"❌ Lỗi khi truy vấn dữ liệu cho {symbol}: {e}"
