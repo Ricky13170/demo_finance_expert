@@ -80,5 +80,113 @@
       "role": "assistant",
       "text": "Giá cổ phiếu VNM hôm nay là 57.4 VND 📊. Bạn muốn biết thêm thông tin về thị trường hoặc phân tích cổ phiếu này không?"
     }
+  ],
+  "5273266715": [
+    {
+      "role": "user",
+      "text": "Giá cổ phiếu FPT hôm nay bao nhiêu?"
+    },
+    {
+      "role": "assistant",
+      "text": "Giá cổ phiếu FPT hiện tại là 103 VND, tăng 1 VND (0,98%) so với ngày trước. Nếu bạn muốn biết thêm thông tin hoặc phân tích sâu hơn, hãy cho tôi biết!"
+    },
+    {
+      "role": "user",
+      "text": "Giá cổ phiếu HPG lúc 9h sáng hôm nay?"
+    },
+    {
+      "role": "assistant",
+      "text": "Tôi xin lỗi vì không thể cung cấp giá cổ phiếu HPG lúc 9h sáng hôm nay. Có thể thị trường đang đóng cửa hoặc API của chúng tôi đang gặp sự cố. Bạn có thể thử lại sau một chút hoặc kiểm tra trên các kênh thông tin khác nhé!"
+    },
+    {
+      "role": "user",
+      "text": "Tin tức về FPT hôm nay"
+    },
+    {
+      "role": "assistant",
+      "text": "Có vẻ như bạn đang tìm kiếm thông tin mới nhất về FPT. Dưới đây là một số tin tức liên quan:\n\nFPT vừa trình diễn giải pháp an ninh mạng chủ động tại triển lãm Công ước Hà Nội của Liên Hợp Quốc về chống tội phạm mạng. Họ giới thiệu hệ sinh thái an ninh mạng chủ động ứng dụng AI, với mục tiêu bảo vệ niềm tin số của Việt Nam và hỗ trợ Chính phủ xây dựng không gian số an toàn và tự chủ.\n\nNếu bạn muốn biết thêm thông tin hoặc cập nhật giá cổ phiếu FPT, hãy cho tôi biết!"
+    },
+    {
+      "role": "user",
+      "text": "Có nên mua FPT không?"
+    },
+    {
+      "role": "assistant",
+      "text": "Phân tích cổ phiếu FPT cho thấy giá hiện tại là 103 VND, tăng nhẹ 0,98% so với ngày trước. Xu hướng 5 ngày gần đây đang đi lên, nhưng độ biến động trong 30 ngày qua khá cao ở mức 16,7%. \n\nVới thông tin này, tôi đưa ra khuyến nghị TRUNG LẬP - không có tín hiệu rõ ràng. Giá đang quanh mức trung bình 30 ngày, chưa có dấu hiệu tăng mạnh mẽ. Bạn nên cân nhắc thêm các yếu tố khác và không nên dựa hoàn toàn vào phân tích tự động này."
+    },
+    {
+      "role": "user",
+      "text": "Báo cáo tài chính của HPG"
+    },
+    {
+      "role": "assistant",
+      "text": "Dưới đây là phân tích về cổ phiếu HPG:\n\nGiá hiện tại: 27 VND\nThay đổi: -0 VND (-1,28%)\nTrung bình 30 ngày: 28 VND\nBiến động 30 ngày: 12,7%\n\nXu hướng:\n- Giá đang quanh mức trung bình 30 ngày\n- Xu hướng 5 ngày gần đây đang đi ngang\n\nKhuyến nghị:\nTRUNG LẬP - không có tín hiệu rõ ràng\n\nLý do:\nGiá đang quanh mức trung bình 30 ngày - tín hiệu trung lập. Xu hướng 5 ngày gần đây đang đi ngang. Biến động 30 ngày qua khá cao ở mức 12,7%."
+    },
+    {
+      "role": "user",
+      "text": "Phân tích cổ phiếu VNM"
+    },
+    {
+      "role": "assistant",
+      "text": "Cổ phiếu VNM đang có giá 57 VND, giảm nhẹ 0,7% so với ngày trước. Giá đang quanh mức trung bình 30 ngày là 59 VND, và xu hướng 5 ngày gần đây đang đi ngang. Biến động trong 30 ngày qua ở mức 10,6%.\n\nVới thông tin này, tôi đưa ra khuyến nghị TRUNG LẬP - không có tín hiệu rõ ràng. Bạn nên cân nhắc thêm các yếu tố khác và không nên dựa hoàn toàn vào phân tích tự động này."
+    }
+  ],
+  "cli_user": [
+    {
+      "role": "user",
+      "text": "Giá cổ phiếu VNM hiện tại?"
+    },
+    {
+      "role": "assistant",
+      "text": "Giá cổ phiếu VNM hiện tại là 57.1 VND. Bạn muốn biết thêm thông tin về cổ phiếu này hay dự báo của các quỹ ETF?"
+    },
+    {
+      "role": "user",
+      "text": "Khuyến nghị về cổ phiếu HPG"
+    },
+    {
+      "role": "assistant",
+      "text": "Cảm ơn bạn đã hỏi về cổ phiếu HPG. Dưới đây là phân tích nhanh:\n\n- Giá hiện tại: 27 VND\n- Thay đổi: giảm 1,28%\n- Xu hướng 5 ngày: đi ngang\n- Khuyến nghị: trung lập, không có tín hiệu rõ ràng.\n\nNếu bạn muốn biết thêm thông tin hoặc có câu hỏi khác, hãy cho tôi biết nhé!"
+    },
+    {
+      "role": "user",
+      "text": "Giá cổ phiếu FPT hôm nay bao nhiêu?"
+    },
+    {
+      "role": "user",
+      "text": "Báo cáo tài chính của HPG"
+    },
+    {
+      "role": "user",
+      "text": "Tin tức về FPT hôm nay"
+    },
+    {
+      "role": "assistant",
+      "text": "Tin tức về FPT hôm nay là FPT trình diễn giải pháp an ninh mạng chủ động tại triển lãm Công ước Hà Nội, giới thiệu hệ sinh thái an ninh mạng ứng dụng AI để bảo vệ niềm tin số của Việt Nam. Đây là nỗ lực của FPT trong việc đồng hành cùng Chính phủ xây dựng không gian số an toàn và tự chủ."
+    },
+    {
+      "role": "user",
+      "text": "Báo cáo tài chính của HPG"
+    },
+    {
+      "role": "assistant",
+      "text": "Tôi có thể cung cấp thông tin về báo cáo tài chính của HPG. \n\nDựa trên thông tin có sẵn, trong quý 2/2025, Tập đoàn Hòa Phát (HPG) đạt lợi nhuận sau thuế 4.300 tỷ đồng, cao nhất trong 3 năm gần đây. Lũy kế 6 tháng đầu năm, HPG đạt doanh thu hơn 74.000 tỷ đồng và lợi nhuận sau thuế hơn 7.600 tỷ đồng, tăng 5% và 23% so với cùng kỳ năm trước.\n\nNếu bạn cần thêm thông tin hoặc báo cáo tài chính chi tiết, vui lòng cho tôi biết!"
+    },
+    {
+      "role": "user",
+      "text": "What is the price of FPT stock today?"
+    },
+    {
+      "role": "assistant",
+      "text": "Tôi có thể giúp bạn tìm hiểu giá cổ phiếu FPT. Tuy nhiên, giá cổ phiếu có thể thay đổi theo thời gian và tôi không có thông tin cập nhật tức thời.\n\nDựa trên thông tin có sẵn gần đây, bạn có thể kiểm tra giá cổ phiếu FPT trên các trang web tài chính như VnExpress, CafeF, hoặc các ứng dụng đầu tư chứng khoán. \n\nNếu bạn muốn biết thêm thông tin về FPT hoặc hỗ trợ tìm kiếm, vui lòng cho tôi biết!"
+    },
+    {
+      "role": "user",
+      "text": "Should I buy MWG?"
+    },
+    {
+      "role": "assistant",
+      "text": "MWG hiện đang ở mức giá 84 VND, gần mức trung bình 30 ngày là 81 VND. Xu hướng 5 ngày gần đây đang giảm nhẹ. \n\nPhân tích tự động đưa ra khuyến nghị TRUNG LẬP, không có tín hiệu rõ ràng. \n\nTuy nhiên, đây không phải là lời khuyên đầu tư. Bạn nên cân nhắc thêm các yếu tố khác và tham khảo ý kiến chuyên gia trước khi đưa ra quyết định mua cổ phiếu."
+    }
   ]
 }

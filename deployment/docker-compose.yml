@@ -1,0 +1,30 @@
+# docker-compose.yml - Cấu hình chạy bot với Docker
+# 
+# Giải thích:
+# - build: Build từ Dockerfile trong thư mục deployment
+# - restart: Tự động restart nếu bot crash
+# - env_file: Đọc biến môi trường từ .env ở thư mục gốc
+# - volumes: Lưu dữ liệu ra ngoài container để không mất khi restart
+
+services:
+  bot:
+    # Build từ Dockerfile trong thư mục deployment
+    build:
+      context: ..  # Context là thư mục gốc project
+      dockerfile: deployment/Dockerfile
+    
+    # Tự động restart nếu bot bị crash
+    restart: unless-stopped
+    
+    # Đọc biến môi trường từ file .env ở thư mục gốc
+    env_file:
+      - ../.env
+    
+    # Mount volumes để lưu dữ liệu ra ngoài container
+    volumes:
+      - ../chroma_db:/app/chroma_db                          # Database vector
+      - ../conversation_history.json:/app/conversation_history.json  # Lịch sử chat
+    
+    # Tên container (dễ nhớ)
+    container_name: finance-expert-bot
+

@@ -1,0 +1,46 @@
+# Test Questions for Finance Expert Bot
+# Copy và paste các câu hỏi này vào Telegram để test bot
+
+## Tra cứu giá cổ phiếu
+
+Giá cổ phiếu FPT hôm nay bao nhiêu?
+Giá cổ phiếu VCB hôm nay như thế nào?
+Giá cổ phiếu MWG hôm qua bao nhiêu?
+Giá cổ phiếu HPG lúc 9h sáng hôm nay?
+Giá cổ phiếu VNM hiện tại?
+Giá cổ phiếu VIN hôm nay?
+
+## Phân tích và tư vấn đầu tư
+
+Có nên mua FPT không?
+Phân tích cổ phiếu MWG cho tôi
+Có nên đầu tư vào VCB không?
+Khuyến nghị về cổ phiếu HPG
+Phân tích cổ phiếu VNM
+Đánh giá cổ phiếu VIN
+
+## Tin tức tài chính
+
+Tin tức về FPT hôm nay
+Tin tức mới nhất về VCB
+Thị trường chứng khoán hôm nay như thế nào?
+Xu hướng thị trường tuần này?
+Tin tức về MWG
+Báo cáo tài chính của HPG
+
+## Câu hỏi tổng hợp
+
+Tình hình cổ phiếu FPT hôm nay như thế nào?
+Giá cổ phiếu VCB có tăng không?
+Có tin tức gì về MWG không?
+Phân tích và đưa ra khuyến nghị về cổ phiếu HPG
+Tin tức và giá cổ phiếu VNM hôm nay?
+
+## Câu hỏi tiếng Anh (nếu bot hỗ trợ)
+
+What is the price of FPT stock today?
+Should I buy MWG?
+News about VCB today
+Analyze HPG stock for me
+What is the current price of VNM?
+
